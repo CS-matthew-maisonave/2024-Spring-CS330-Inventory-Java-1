@@ -47,6 +47,13 @@ public class Armour extends Item {
     public Armour()
     {
         // Initialize all data members (including those inherited from Item)
+        super("", false);
+        durability   =  0;
+        defense      =  0;
+        material     = "";
+        modifier     = "";
+        modiferLevel =  0;
+        element      = "";
     }
 
     /**
@@ -57,6 +64,15 @@ public class Armour extends Item {
     public Armour(Armour src)
     {
         // Set and/or copy data members for *this* object based on *src*.
+        super.name         = src.name;
+        super.stackable    = src.stackable;
+        this.durability    = src.durability;
+        this.defense       = src.defense;      
+        this.material      = src.material;     
+        this.modifier      = src.modifier;   
+        this.modiferLevel  = src.modiferLevel;
+        this.element       = src.element;
+
     }
 
     /**
@@ -189,9 +205,13 @@ public class Armour extends Item {
     @Override
     public void read(Scanner snr)
     {
-        super.name   = snr.next();
-
-        // Complete this method
+        super.name        = snr.next();
+        this.material     = snr.next();
+        this.durability   = snr.nextInt();
+        this.defense      = snr.nextInt();     
+        this.modifier     = snr.next();
+        this.modiferLevel = snr.nextInt();
+        this.element      = snr.next();
     }
 
     /**
@@ -200,8 +220,8 @@ public class Armour extends Item {
     @Override
     public Item clone()
     {
-        // Replace the next line
-        return null;
+        Armour clone = new Armour(this);
+        return clone;
     }
 
     /**
@@ -210,7 +230,13 @@ public class Armour extends Item {
     @Override
     public String toString()
     {
-        return "Implement This Function";
+        String opStr = "  Nme: " + super.name                                         + '\n'
+                     + "  Dur: " + this.durability                                    + '\n'
+                     + "  Def: " + this.defense                                       + '\n'
+                     + "  Mtl: " + this.material                                      + '\n'
+                     + "  Mdr: " + this.modifier + " (Lvl " + this.modiferLevel + ')' + '\n'
+                     + "  Emt: " + this.element                                       + '\n';
+        return opStr; 
     }
 }
 

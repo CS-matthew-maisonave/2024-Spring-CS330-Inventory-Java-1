@@ -38,7 +38,10 @@ public class Consumable extends Item {
      */
     public Consumable(Consumable src)
     {
-        // Complete this method
+        super.name      = src.name;
+        super.stackable = src.stackable;
+        this.effect     = src.effect;
+        this.uses       = src.uses;  
     }
 
     /**
@@ -87,9 +90,9 @@ public class Consumable extends Item {
     @Override
     public void read(Scanner snr)
     {
-        super.name = snr.next();
-
-        // Complete this method
+        super.name  = snr.next();
+        this.effect = snr.next();
+        this.uses   = snr.nextInt();
     }
 
     /**
@@ -98,7 +101,8 @@ public class Consumable extends Item {
     @Override
     public Item clone()
     {
-        return null;
+        Consumable clone = new Consumable(this);
+        return clone;
     }
 
     /**
@@ -107,6 +111,9 @@ public class Consumable extends Item {
     @Override
     public String toString()
     {
-        return "Implement this function";
+        String opStr = "  Nme: " + super.name  + '\n'
+                     + "  Eft: " + this.effect + '\n'
+                     + "  Use: " + this.uses   + '\n';
+        return opStr; 
     }
 }
